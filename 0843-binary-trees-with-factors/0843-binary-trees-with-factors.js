@@ -10,7 +10,6 @@ var numFactoredBinaryTrees = function (arr) {
               
           }
       }
-      console.log("Value"+map[arr[i]]); 
       res = (res+map[arr[i]])%1000000007;
   }
   return res;
