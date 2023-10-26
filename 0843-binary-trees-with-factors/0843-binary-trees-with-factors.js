@@ -5,8 +5,10 @@ var numFactoredBinaryTrees = function (arr) {
   for(let i=0;i<arr.length;i++){
       map[arr[i]] = 1;
       for(let j=0;j<i;j++){
-          if(arr[i]%arr[j]==0&&map[arr[i]/arr[j]]){
-              map[arr[i]] += map[arr[j]]*map[arr[i]/arr[j]];
+          let factor = map[arr[j]];
+          let otherFactor = map[arr[i]/arr[j]];
+          if(arr[i]%arr[j]==0&&otherFactor){
+              map[arr[i]] += factor*otherFactor;
               
           }
       }
