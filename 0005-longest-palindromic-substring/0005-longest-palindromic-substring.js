@@ -21,9 +21,11 @@ var longestPalindrome = function(s) {
     let res = "";
     for(i in map){
         for(let j=0;j<map[i].length;j++){
+            let low = Number(map[i][j]);
             for(let k=map[i].length-1;k>=j;k--){
-                if(res.length>Number(map[i][k])-Number(map[i][j])+1)break;
-                let temp = s.slice(map[i][j],Number(map[i][k])+1);
+                let high = Number(map[i][k]);
+                if(res.length>high-low+1)break;
+                let temp = s.slice(low,high+1);
                 if(reverseString(temp) == temp)res = temp;
             }
         }
