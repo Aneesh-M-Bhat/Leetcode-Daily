@@ -21,15 +21,20 @@ var longestPalindrome = function(s) {
         }
     }
     let res = "";
+    let bestHigh = 0;
+    let bestLow = 0;
     for(i in map){
         for(let j=0;j<map[i].length;j++){
             let low = Number(map[i][j]);
             for(let k=map[i].length-1;k>=j;k--){
                 let high = Number(map[i][k]);
-                if(res.length>high-low+1)break;
-                if(checkPalindrome(s,high,low))res = s.slice(low,high+1);
+                if(bestHigh-bestLow>high-low)break;
+                if(checkPalindrome(s,high,low)){
+                    bestHigh = high;
+                    bestLow = low;
+                }
             }
         }
     }
-    return res;
+    return s.slice(bestLow,bestHigh+1);
 };
