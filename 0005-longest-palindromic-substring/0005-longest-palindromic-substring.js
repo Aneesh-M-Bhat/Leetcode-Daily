@@ -2,11 +2,18 @@
  * @param {string} s
  * @return {string}
  */
-var reverseString = (s) => {
-    let splitStr = s.split("");
-    let revArr = splitStr.reverse();
-    let joinStr = revArr.join("");
-    return joinStr;
+let map = {};
+
+var checkPalindrome = (s) => {
+    if(s in map)return map[s];
+    map[s] = true;
+    for(let i=0;i<s.length/2;i++){
+        if(s[i]!=s[s.length-1-i]){
+            map[s] = false;
+            break;
+        }
+    }
+    return map[s];
 }
 
 var longestPalindrome = function(s) {
@@ -26,7 +33,7 @@ var longestPalindrome = function(s) {
                 let high = Number(map[i][k]);
                 if(res.length>high-low+1)break;
                 let temp = s.slice(low,high+1);
-                if(reverseString(temp) == temp)res = temp;
+                if(checkPalindrome(temp))res = temp;
             }
         }
     }
