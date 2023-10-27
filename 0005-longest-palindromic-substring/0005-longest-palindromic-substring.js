@@ -4,16 +4,11 @@
  */
 let map = {};
 
-var checkPalindrome = (s) => {
-    if(s in map)return map[s];
-    map[s] = true;
-    for(let i=0;i<s.length/2;i++){
-        if(s[i]!=s[s.length-1-i]){
-            map[s] = false;
-            break;
-        }
+var checkPalindrome = (s,high,low) => {
+    for(let i=0;i<(high-low)/2;i++){
+        if(s[low+i]!=s[high-i])return false;
     }
-    return map[s];
+    return true;
 }
 
 var longestPalindrome = function(s) {
@@ -32,8 +27,7 @@ var longestPalindrome = function(s) {
             for(let k=map[i].length-1;k>=j;k--){
                 let high = Number(map[i][k]);
                 if(res.length>high-low+1)break;
-                let temp = s.slice(low,high+1);
-                if(checkPalindrome(temp))res = temp;
+                if(checkPalindrome(s,high,low))res = s.slice(low,high+1);
             }
         }
     }
