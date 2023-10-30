@@ -13,11 +13,10 @@ function count(str) {
 }
 
 var sortByBits = function(arr) {
-    arr.sort((a,b)=>a-b);
     arr.sort((a,b)=>{
         let x = count((a >>> 0).toString(2));
         let y = count((b >>> 0).toString(2));
-        return x-y;
+        return x==y?a-b:x-y;
     });
     return arr;
 };
